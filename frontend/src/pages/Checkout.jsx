@@ -70,14 +70,12 @@ export default function Checkout() {
         email: form.email.trim(),
         phone: form.phone.trim()
       },
-
       shippingAddress: {
         address: form.address.trim(),
         city: form.city.trim(),
         state: form.state.trim(),
         pincode: form.pincode.trim()
       },
-
       items: cart.map((item) => ({
         product: item._id,
         quantity: item.quantity
@@ -111,14 +109,18 @@ export default function Checkout() {
 
       toast.success("Your order has been placed!");
 
-      navigate(
+      // Navigate after successful order placement
+      void navigate(
         `/order-confirmation/${result.order.orderId}`,
         {
           state: { order: result.order }
         }
       );
+
     } catch (error) {
-      toast.error(error.message || "Something went wrong");
+      toast.error(
+        error.message || "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }
@@ -130,6 +132,7 @@ export default function Checkout() {
         <ShoppingBag size={45} strokeWidth={1} />
         <h2>Your shopping bag is empty.</h2>
         <p>Add some products before proceeding to checkout.</p>
+
         <Link to="/shop" className="checkout-back-button">
           Explore Shop <ArrowRight size={17} />
         </Link>
@@ -344,7 +347,10 @@ export default function Checkout() {
 
           <div className="summary-products">
             {cart.map((item) => (
-              <div className="summary-product" key={item._id}>
+              <div
+                className="summary-product"
+                key={item._id}
+              >
                 <div className="summary-product-image">
                   <img
                     src={

@@ -34,7 +34,9 @@ export default function CartDrawer() {
     if (cart.length === 0) return;
 
     setIsCartOpen(false);
-    navigate("/checkout");
+
+    // Navigation is intentionally not awaited.
+    void navigate("/checkout");
   };
 
   return (

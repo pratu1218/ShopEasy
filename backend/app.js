@@ -4,8 +4,20 @@ const cors = require("cors");
 
 const app = express();
 
+// Hide Express framework information
+app.disable("x-powered-by");
+
+// CORS configuration
+const allowedOrigin =
+    process.env.FRONTEND_URL || "http://localhost:5173";
+
+app.use(cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Import Routes

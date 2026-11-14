@@ -26,3 +26,5 @@ desktop.ini
 # IDE
 .vscode/
 .idea/
+
+.scannerwork/
